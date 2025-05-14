@@ -18,6 +18,7 @@ import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBody } from '@nestjs/s
 import { Student } from '../Domain/entities/student.entity'; // Importa la entidad para el tipo de respuesta
 import { StudentFuc } from 'src/Domain/entities/FUC/student.entity';
 import { Response } from 'express';
+import { StudentData } from 'src/Application/students/dto/studentsFilter.dto';
 
 @ApiTags('students')
 @Controller('students')
@@ -88,5 +89,32 @@ export class StudentsController {
   @ApiResponse({ status: 404, description: 'Estudiante no encontrado.' })
   async findByCiFUC(@Param('ciStudent') ciStudent: string): Promise<StudentFuc> {
     return this.studentsService.findByCiFuc(ciStudent);
+  }
+  @Post('FilterwithFuc/')
+  @ApiOperation({ summary: 'Verificar si los datos de un estudiante coinciden con los de la FUC' })
+  async FilterStudentsInFuc(@Body() studentFilterDto: StudentData[], @Res() res: Response) {
+    try {
+      const students = await this.studentsService.FilterStudentsInFuc(studentFilterDto);
+      if (students === null) {
+        res.status(200).json({
+          message: 'Todos los datos de los estudiantes coinciden con los de la FUC'
+        });
+      }
+      else {
+        res.status(400).json({
+          message: 'Los siguientes estudiantes no coinciden con los de la FUC',
+          students: students
+        })
+      }
+    } catch (error) {
+      res.status(404).json({
+        error: error.message,
+      })
+    }
+  }
+  @Post('AddStudentsbyExcel/')
+  @ApiOperation({ summary: 'Añadir estudiantes a la base de datos en funcion del excel' })
+  async AddStudentsByExcel(@Body() studentDto: StudentData[]) { 
+    return this.studentsService.AddStudentsByExcel(studentDto);
   }
 }

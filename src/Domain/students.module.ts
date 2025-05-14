@@ -4,9 +4,10 @@ import { StudentsService } from '../Infrastrutcure/students.service'; // Ajusta 
 import { StudentsController } from '../Presentation/students.controller'; // Ajusta la ruta si es necesario
 import { Student } from './entities/student.entity';
 import { StudentFuc } from 'src/Domain/entities/FUC/student.entity';
+import { Excel } from './entities/Excel.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Student]),
+  imports: [TypeOrmModule.forFeature([Student , Excel]),
   TypeOrmModule.forFeature([StudentFuc], 'FUC')],
   controllers: [StudentsController], // Asegúrate de que el controlador esté aquí
   providers: [StudentsService],

@@ -1,5 +1,4 @@
-import { StudentData } from 'src/Application/students/dto/studentsFilter.dto';
-export declare class Student {
+export interface StudentData {
     ciStudent: string;
     nationality: string;
     lastName: string;
@@ -20,5 +19,4 @@ export declare class Student {
     academicIndex?: string;
     origin?: string;
     situation?: string;
-    UpdateStudent(studentData: StudentData): Promise<void>;
 }

@@ -4,6 +4,8 @@ import { StudentsModule } from './Domain/students.module';
 import { dataSource } from './Infrastrutcure/database/datasource';
 import { StudentsController } from './Presentation/students.controller';
 import { dataSourceFUC } from './Infrastrutcure/database/datasourceFuc';
+import { ExcelModule } from './Domain/excel.module';
+import { ExcelController } from './Presentation/excel.controller';
 
 
 @Module({
@@ -14,8 +16,9 @@ import { dataSourceFUC } from './Infrastrutcure/database/datasourceFuc';
     // Conexión a la base de datos SIGIES (segunda conexión)
     
     StudentsModule,
+    ExcelModule
   ],
-  controllers: [StudentsController],
+  controllers: [StudentsController ],
   providers: [],
 })
 export class AppModule { }

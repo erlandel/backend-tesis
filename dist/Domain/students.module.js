@@ -13,12 +13,13 @@ const students_service_1 = require("../Infrastrutcure/students.service");
 const students_controller_1 = require("../Presentation/students.controller");
 const student_entity_1 = require("./entities/student.entity");
 const student_entity_2 = require("./entities/FUC/student.entity");
+const Excel_entity_1 = require("./entities/Excel.entity");
 let StudentsModule = class StudentsModule {
 };
 exports.StudentsModule = StudentsModule;
 exports.StudentsModule = StudentsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([student_entity_1.Student]),
+        imports: [typeorm_1.TypeOrmModule.forFeature([student_entity_1.Student, Excel_entity_1.Excel]),
             typeorm_1.TypeOrmModule.forFeature([student_entity_2.StudentFuc], 'FUC')],
         controllers: [students_controller_1.StudentsController],
         providers: [students_service_1.StudentsService],

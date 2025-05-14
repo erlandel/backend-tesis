@@ -29,6 +29,30 @@ let Student = class Student {
     fatherOccupation;
     motherWorkSector;
     fatherWorkSector;
+    academicIndex;
+    origin;
+    situation;
+    async UpdateStudent(studentData) {
+        this.academicIndex = studentData.academicIndex;
+        this.address = studentData.address;
+        this.admissionMethod = studentData.admissionMethod;
+        this.firstName = studentData.firstName;
+        this.fatherEducation = studentData.fatherEducation;
+        this.fatherOccupation = studentData.fatherOccupation;
+        this.fatherWorkSector = studentData.fatherWorkSector;
+        this.gender = studentData.gender;
+        this.lastName = studentData.lastName;
+        this.motherEducation = studentData.motherEducation;
+        this.motherOccupation = studentData.motherOccupation;
+        this.motherWorkSector = studentData.motherWorkSector;
+        this.nationality = studentData.nationality;
+        this.origin = studentData.origin;
+        this.preUniversity = studentData.preUniversity;
+        this.province = studentData.province;
+        this.skinColor = studentData.skinColor;
+        this.situation = studentData.situation;
+        this.municipality = studentData.municipality;
+    }
 };
 exports.Student = Student;
 __decorate([
@@ -60,7 +84,7 @@ __decorate([
     __metadata("design:type", String)
 ], Student.prototype, "municipality", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'skin_color' }),
+    (0, typeorm_1.Column)({ name: 'skin_color', nullable: true }),
     __metadata("design:type", String)
 ], Student.prototype, "skinColor", void 0);
 __decorate([
@@ -99,6 +123,18 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Student.prototype, "fatherWorkSector", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Student.prototype, "academicIndex", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Student.prototype, "origin", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Student.prototype, "situation", void 0);
 exports.Student = Student = __decorate([
     (0, typeorm_1.Entity)('students')
 ], Student);

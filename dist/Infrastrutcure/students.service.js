@@ -73,6 +73,91 @@ let StudentsService = class StudentsService {
             throw new common_1.NotFoundException(`Estudiante con CI ${ciStudent} no encontrado para eliminar.`);
         }
     }
+    async FilterStudentsInFuc(studentFilterDto) {
+        const response = [];
+        const people = await this.studentDto.find();
+        if (people.length === null) {
+            throw new common_1.NotFoundException(`Estudiantes no encontrados.`);
+        }
+        for (const person of studentFilterDto) {
+            const student = people.find(p => p.ciStudent === person.ciStudent);
+            if (!student) {
+                throw new common_1.NotFoundException(`Estudiante con CI ${person.ciStudent} no encontrado en la FUC.`);
+            }
+            const students = {
+                ciStudent: student.ciStudent,
+                files: [],
+            };
+            if (student.nationality.toLowerCase() !== person.nationality.toLowerCase()) {
+                students.files.push('nationality');
+            }
+            console.log(students.files);
+            if (student.lastName.toLowerCase() !== person.lastName.toLowerCase()) {
+                students.files.push('lastName');
+            }
+            if (student.firstName.toLowerCase() !== person.firstName.toLowerCase()) {
+                students.files.push('firstNanme');
+            }
+            if (student.address.toLowerCase() !== person.address.toLowerCase()) {
+                students.files.push('address');
+            }
+            if (student.province.toLowerCase() !== person.province.toLowerCase()) {
+                students.files.push('province');
+            }
+            if (student.municipality.toLowerCase() !== person.municipality.toLowerCase()) {
+                students.files.push('municipality');
+            }
+            if (student.skinColor.toLowerCase() !== person.skinColor?.toLowerCase()) {
+                students.files.push('skinColor');
+            }
+            if (student.gender.toLowerCase() !== person.gender.toLowerCase()) {
+                students.files.push('gender');
+            }
+            if (students.files.length > 0) {
+                response.push(students);
+            }
+        }
+        if (response.length === 0) {
+            return null;
+        }
+        return response;
+    }
+    async AddStudentsByExcel(studentDto) {
+        const studentsRegistered = await this.studentsRepository.find();
+        const toSave = [];
+        for (const i of studentDto) {
+            let students = studentsRegistered.find(p => p.ciStudent === i.ciStudent);
+            if (students) {
+                students.UpdateStudent(i);
+            }
+            else {
+                students = this.studentsRepository.create({
+                    ciStudent: i.ciStudent,
+                    nationality: i.nationality,
+                    lastName: i.lastName,
+                    firstName: i.firstName,
+                    address: i.address,
+                    province: i.province,
+                    municipality: i.municipality,
+                    skinColor: i.skinColor,
+                    gender: i.gender,
+                    preUniversity: i.preUniversity,
+                    admissionMethod: i.admissionMethod,
+                    motherEducation: i.motherEducation,
+                    fatherEducation: i.fatherEducation,
+                    motherOccupation: i.motherOccupation,
+                    fatherOccupation: i.fatherOccupation,
+                    motherWorkSector: i.motherWorkSector,
+                    fatherWorkSector: i.fatherWorkSector,
+                    academicIndex: i.academicIndex,
+                    origin: i.origin,
+                    situation: i.situation,
+                });
+            }
+            toSave.push(students);
+        }
+        await this.studentsRepository.save(toSave);
+    }
 };
 exports.StudentsService = StudentsService;
 exports.StudentsService = StudentsService = __decorate([

@@ -52,6 +52,30 @@ let StudentsController = class StudentsController {
     async findByCiFUC(ciStudent) {
         return this.studentsService.findByCiFuc(ciStudent);
     }
+    async FilterStudentsInFuc(studentFilterDto, res) {
+        try {
+            const students = await this.studentsService.FilterStudentsInFuc(studentFilterDto);
+            if (students === null) {
+                res.status(200).json({
+                    message: 'Todos los datos de los estudiantes coinciden con los de la FUC'
+                });
+            }
+            else {
+                res.status(400).json({
+                    message: 'Los siguientes estudiantes no coinciden con los de la FUC',
+                    students: students
+                });
+            }
+        }
+        catch (error) {
+            res.status(404).json({
+                error: error.message,
+            });
+        }
+    }
+    async AddStudentsByExcel(studentDto) {
+        return this.studentsService.AddStudentsByExcel(studentDto);
+    }
 };
 exports.StudentsController = StudentsController;
 __decorate([
@@ -121,6 +145,23 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], StudentsController.prototype, "findByCiFUC", null);
+__decorate([
+    (0, common_1.Post)('FilterwithFuc/'),
+    (0, swagger_1.ApiOperation)({ summary: 'Verificar si los datos de un estudiante coinciden con los de la FUC' }),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array, Object]),
+    __metadata("design:returntype", Promise)
+], StudentsController.prototype, "FilterStudentsInFuc", null);
+__decorate([
+    (0, common_1.Post)('AddStudentsbyExcel/'),
+    (0, swagger_1.ApiOperation)({ summary: 'Añadir estudiantes a la base de datos en funcion del excel' }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array]),
+    __metadata("design:returntype", Promise)
+], StudentsController.prototype, "AddStudentsByExcel", null);
 exports.StudentsController = StudentsController = __decorate([
     (0, swagger_1.ApiTags)('students'),
     (0, common_1.Controller)('students'),

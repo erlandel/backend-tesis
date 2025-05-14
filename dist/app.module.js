@@ -13,6 +13,7 @@ const students_module_1 = require("./Domain/students.module");
 const datasource_1 = require("./Infrastrutcure/database/datasource");
 const students_controller_1 = require("./Presentation/students.controller");
 const datasourceFuc_1 = require("./Infrastrutcure/database/datasourceFuc");
+const excel_module_1 = require("./Domain/excel.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -22,6 +23,7 @@ exports.AppModule = AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRoot(datasource_1.dataSource.options),
             typeorm_1.TypeOrmModule.forRoot({ ...datasourceFuc_1.dataSourceFUC.options, name: 'FUC' }),
             students_module_1.StudentsModule,
+            excel_module_1.ExcelModule
         ],
         controllers: [students_controller_1.StudentsController],
         providers: [],

@@ -4,6 +4,7 @@ import { UpdateStudentDto } from 'src/Application/students/dto/update-student.dt
 import { Student } from '../Domain/entities/student.entity';
 import { StudentFuc } from 'src/Domain/entities/FUC/student.entity';
 import { Response } from 'express';
+import { StudentData } from 'src/Application/students/dto/studentsFilter.dto';
 export declare class StudentsController {
     private readonly studentsService;
     constructor(studentsService: StudentsService);
@@ -13,4 +14,6 @@ export declare class StudentsController {
     updateStudent(ciStudent: string, updateStudentDto: UpdateStudentDto): Promise<Student>;
     removeStudent(ciStudent: string): Promise<void>;
     findByCiFUC(ciStudent: string): Promise<StudentFuc>;
+    FilterStudentsInFuc(studentFilterDto: StudentData[], res: Response): Promise<void>;
+    AddStudentsByExcel(studentDto: StudentData[]): Promise<void>;
 }
