@@ -24,7 +24,7 @@ let StudentsController = class StudentsController {
     constructor(studentsService) {
         this.studentsService = studentsService;
     }
-    async createStudent(studentDto, res) {
+    async createStudent(studentDto, file, res) {
         const student = await this.studentsService.createStudent(studentDto);
         if (student !== null) {
             res.status(200).json({
@@ -85,9 +85,10 @@ __decorate([
     (0, swagger_1.ApiResponse)({ status: 201, description: 'El estudiante ha sido creado exitosamente.', type: student_entity_1.Student }),
     (0, swagger_1.ApiResponse)({ status: 400, description: 'Datos de entrada inválidos.' }),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Res)()),
+    __param(1, (0, common_1.UploadedFile)()),
+    __param(2, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [student_dto_1.StudentDto, Object]),
+    __metadata("design:paramtypes", [student_dto_1.StudentDto, Object, Object]),
     __metadata("design:returntype", Promise)
 ], StudentsController.prototype, "createStudent", null);
 __decorate([

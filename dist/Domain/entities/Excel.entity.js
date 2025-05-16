@@ -16,6 +16,7 @@ let Excel = class Excel {
     name;
     modelType;
     description;
+    route;
 };
 exports.Excel = Excel;
 __decorate([
@@ -34,6 +35,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Excel.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Excel.prototype, "route", void 0);
 exports.Excel = Excel = __decorate([
     (0, typeorm_1.Entity)('Excel')
 ], Excel);

@@ -8,7 +8,7 @@ import { StudentData } from 'src/Application/students/dto/studentsFilter.dto';
 export declare class StudentsController {
     private readonly studentsService;
     constructor(studentsService: StudentsService);
-    createStudent(studentDto: StudentDto, res: Response): Promise<void>;
+    createStudent(studentDto: StudentDto, file: Express.Multer.File, res: Response): Promise<void>;
     findAllStudents(): Promise<Student[]>;
     findByCiStudent(ciStudent: string): Promise<Student>;
     updateStudent(ciStudent: string, updateStudentDto: UpdateStudentDto): Promise<Student>;

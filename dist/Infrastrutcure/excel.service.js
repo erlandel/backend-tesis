@@ -17,14 +17,35 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const Excel_entity_1 = require("../Domain/entities/Excel.entity");
 const typeorm_2 = require("typeorm");
+const fs = require("fs");
+const path = require("path");
 let ExcelService = class ExcelService {
     excelRepository;
     constructor(excelRepository) {
         this.excelRepository = excelRepository;
     }
-    async createExcel(excelData) {
+    async createExcel(excelData, file) {
+        const name = await this.excelRepository.findOneBy({ name: excelData.name });
+        if (name !== null) {
+            return null;
+        }
+        const directorioExcel = path.join(process.cwd(), 'src', 'excel');
+        if (!fs.existsSync(directorioExcel)) {
+            fs.mkdirSync(directorioExcel, { recursive: true });
+        }
+        let rutaArchivo = null;
+        if (file) {
+            const nombreArchivo = excelData.name || `excel_${Date.now()}.xlsx`;
+            const nombreFinal = nombreArchivo.endsWith('.xlsx') ? nombreArchivo : `${nombreArchivo}.xlsx`;
+            rutaArchivo = path.join(directorioExcel, nombreFinal);
+            fs.writeFileSync(rutaArchivo, file.buffer);
+        }
         const excel = this.excelRepository.create(excelData);
+        if (rutaArchivo !== null) {
+            excel.route = rutaArchivo;
+        }
         await this.excelRepository.save(excel);
+        return excel;
     }
     async getExcelbyId(id) {
         const student = await this.excelRepository.findOneBy({ id });

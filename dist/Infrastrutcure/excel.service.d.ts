@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 export declare class ExcelService {
     private excelRepository;
     constructor(excelRepository: Repository<Excel>);
-    createExcel(excelData: ExcelDto): Promise<void>;
+    createExcel(excelData: ExcelDto, file: Express.Multer.File): Promise<Excel | null>;
     getExcelbyId(id: number): Promise<Excel | null>;
     getAllExcel(): Promise<Excel[]>;
 }

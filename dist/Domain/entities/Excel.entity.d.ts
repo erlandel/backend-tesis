@@ -3,4 +3,5 @@ export declare class Excel {
     name: string;
     modelType: string;
     description: string;
+    route: string;
 }

@@ -10,4 +10,6 @@ export class Excel{
     modelType: string;
     @Column()
     description: string;
+    @Column()
+    route: string;
 }

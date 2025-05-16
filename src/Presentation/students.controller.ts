@@ -10,15 +10,18 @@ import {
   HttpCode,
   HttpStatus,
   Res,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { StudentsService } from '../Infrastrutcure/students.service'; // Ajusta la ruta si es necesario
 import { StudentDto } from 'src/Application/students/dto/student.dto'; 
 import { UpdateStudentDto } from 'src/Application/students/dto/update-student.dto'; 
-import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBody, ApiConsumes } from '@nestjs/swagger';
 import { Student } from '../Domain/entities/student.entity'; // Importa la entidad para el tipo de respuesta
 import { StudentFuc } from 'src/Domain/entities/FUC/student.entity';
 import { Response } from 'express';
 import { StudentData } from 'src/Application/students/dto/studentsFilter.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('students')
 @Controller('students')
@@ -30,7 +33,7 @@ export class StudentsController {
   @ApiBody({ type: StudentDto })
   @ApiResponse({ status: 201, description: 'El estudiante ha sido creado exitosamente.', type: Student })
   @ApiResponse({ status: 400, description: 'Datos de entrada inválidos.' })
-  async createStudent(@Body() studentDto: StudentDto , @Res () res: Response){
+  async createStudent(@Body() studentDto: StudentDto , @UploadedFile() file: Express.Multer.File, @Res () res: Response){
    const student = await this.studentsService.createStudent(studentDto);
     if (student !== null) {
       res.status(200).json({
