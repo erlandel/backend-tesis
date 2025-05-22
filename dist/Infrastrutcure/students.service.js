@@ -91,12 +91,11 @@ let StudentsService = class StudentsService {
             if (student.nationality.toLowerCase() !== person.nationality.toLowerCase()) {
                 students.files.push('nationality');
             }
-            console.log(students.files);
             if (student.lastName.toLowerCase() !== person.lastName.toLowerCase()) {
                 students.files.push('lastName');
             }
             if (student.firstName.toLowerCase() !== person.firstName.toLowerCase()) {
-                students.files.push('firstNanme');
+                students.files.push('firstName');
             }
             if (student.address.toLowerCase() !== person.address.toLowerCase()) {
                 students.files.push('address');

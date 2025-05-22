@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty } from 'class-validator';
 
 export class StudentDto {
   @ApiProperty({ description: 'Apellido del estudiante' })
@@ -17,6 +18,7 @@ export class StudentDto {
   gender: string;
 
   @ApiProperty({ description: 'Nacionalidad' })
+  @IsNotEmpty()
   nationality: string;
 
   @ApiProperty({ description: 'Dirección' })
