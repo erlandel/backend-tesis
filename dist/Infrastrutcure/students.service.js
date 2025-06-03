@@ -100,7 +100,8 @@ let StudentsService = class StudentsService {
             if (student.primer_nombre.toLowerCase() !== person.primer_nombre.toLowerCase()) {
                 students.files.push('primer_nombre');
             }
-            if (person.segundo_nombre === null || student.segundo_nombre.toLowerCase() !== person.segundo_nombre.toLowerCase()) {
+            if (person.segundo_nombre === null ||
+                (person.segundo_nombre && student.segundo_nombre?.toLowerCase() !== person.segundo_nombre.toLowerCase())) {
                 students.files.push('segundo_nombre');
             }
             if (student.direccion.toLowerCase() !== person.direccion.toLowerCase()) {
@@ -139,8 +140,8 @@ let StudentsService = class StudentsService {
                 students = this.studentsRepository.create({
                     ciStudent: i.identidad_numero,
                     nationality: i.ciudadania,
-                    lastName: i.primer_apellido,
-                    firstName: i.primer_nombre,
+                    lastName: i.primer_apellido + " " + i.segundo_apellido,
+                    firstName: i.primer_nombre + " " + i.segundo_nombre || "",
                     address: i.direccion,
                     province: i.provincia_residencia,
                     municipality: i.municipio_residencia,

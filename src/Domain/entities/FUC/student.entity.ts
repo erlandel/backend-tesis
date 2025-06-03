@@ -11,11 +11,11 @@ export class StudentFuc {
   @Column()
   @ApiProperty({ description: 'Nombre del estudiante' })
   primer_nombre: string;
-  @Column()
-  @ApiProperty({ description: 'Segundo nombre del estudiante' })
-  segundo_nombre: string;
+  @Column({ nullable: true })
+  @ApiProperty({ description: 'Segundo nombre del estudiante', nullable: true })
+  segundo_nombre?: string;   
   @ApiProperty({ description: 'carnet de identidad' })
-  @PrimaryColumn({ length: 11, name: 'ci_student' })
+  @PrimaryColumn({ length: 11, name: 'identidad_numero' })
   identidad_numero: string;   // Cambiado de idCard a ciStudent para coincidir con la entidad
   @Column()
   @ApiProperty({ description: 'Provincia' })

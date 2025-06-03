@@ -42,13 +42,13 @@ __decorate([
     __metadata("design:type", String)
 ], StudentFuc.prototype, "primer_nombre", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    (0, swagger_1.ApiProperty)({ description: 'Segundo nombre del estudiante' }),
+    (0, typeorm_1.Column)({ nullable: true }),
+    (0, swagger_1.ApiProperty)({ description: 'Segundo nombre del estudiante', nullable: true }),
     __metadata("design:type", String)
 ], StudentFuc.prototype, "segundo_nombre", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ description: 'carnet de identidad' }),
-    (0, typeorm_1.PrimaryColumn)({ length: 11, name: 'ci_student' }),
+    (0, typeorm_1.PrimaryColumn)({ length: 11, name: 'identidad_numero' }),
     __metadata("design:type", String)
 ], StudentFuc.prototype, "identidad_numero", void 0);
 __decorate([
