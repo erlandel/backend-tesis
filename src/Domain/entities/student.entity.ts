@@ -55,24 +55,24 @@ export class Student {
 
   async UpdateStudent(studentData: StudentData) { 
     this.academicIndex = studentData.academicIndex;
-    this.address = studentData.address;
+    this.address = studentData.direccion;
     this.admissionMethod = studentData.admissionMethod;
-    this.firstName = studentData.firstName;
+    this.firstName = studentData.primer_nombre;
     this.fatherEducation = studentData.fatherEducation;
     this.fatherOccupation = studentData.fatherOccupation;
     this.fatherWorkSector = studentData.fatherWorkSector;
-    this.gender = studentData.gender;
-    this.lastName = studentData.lastName;
+    this.gender = studentData.sexo;
+    this.lastName = studentData.primer_apellido;
     this.motherEducation = studentData.motherEducation;
     this.motherOccupation = studentData.motherOccupation;
     this.motherWorkSector = studentData.motherWorkSector;
-    this.nationality = studentData.nationality;
+    this.nationality = studentData.ciudadania;
     this.origin = studentData.origin;
     this.preUniversity = studentData.preUniversity;
-    this.province = studentData.province;
-    this.skinColor = studentData.skinColor;
+    this.province = studentData.provincia_residencia;
+    this.skinColor = studentData.color_piel;
     this.situation = studentData.situation;
-    this.municipality = studentData.municipality; 
+    this.municipality = studentData.municipio_residencia; 
   }
   
 }

@@ -45,7 +45,7 @@ let StudentsService = class StudentsService {
         return student;
     }
     async findByCiFuc(ciStudent) {
-        const student = await this.studentDto.findOneBy({ ciStudent });
+        const student = await this.studentDto.findOneBy({ identidad_numero: ciStudent });
         if (!student) {
             throw new common_1.NotFoundException(`Estudiante con CI ${ciStudent} no encontrado.`);
         }
@@ -80,36 +80,42 @@ let StudentsService = class StudentsService {
             throw new common_1.NotFoundException(`Estudiantes no encontrados.`);
         }
         for (const person of studentFilterDto) {
-            const student = people.find(p => p.ciStudent === person.ciStudent);
+            const student = people.find(p => p.identidad_numero === person.identidad_numero);
             if (!student) {
-                throw new common_1.NotFoundException(`Estudiante con CI ${person.ciStudent} no encontrado en la FUC.`);
+                throw new common_1.NotFoundException(`Estudiante con CI ${person.identidad_numero} no encontrado en la FUC.`);
             }
             const students = {
-                ciStudent: student.ciStudent,
+                ciStudent: student.identidad_numero,
                 files: [],
             };
-            if (student.nationality.toLowerCase() !== person.nationality.toLowerCase()) {
-                students.files.push('nationality');
+            if (student.ciudadania.toLowerCase() !== person.ciudadania.toLowerCase()) {
+                students.files.push('ciudadania');
             }
-            if (student.lastName.toLowerCase() !== person.lastName.toLowerCase()) {
-                students.files.push('lastName');
+            if (student.primer_apellido.toLowerCase() !== person.primer_apellido.toLowerCase()) {
+                students.files.push('primer_apellido');
             }
-            if (student.firstName.toLowerCase() !== person.firstName.toLowerCase()) {
-                students.files.push('firstName');
+            if (student.segundo_apellido.toLowerCase() !== person.segundo_apellido.toLowerCase()) {
+                students.files.push('segundo_apellido');
             }
-            if (student.address.toLowerCase() !== person.address.toLowerCase()) {
+            if (student.primer_nombre.toLowerCase() !== person.primer_nombre.toLowerCase()) {
+                students.files.push('primer_nombre');
+            }
+            if (person.segundo_nombre === null || student.segundo_nombre.toLowerCase() !== person.segundo_nombre.toLowerCase()) {
+                students.files.push('segundo_nombre');
+            }
+            if (student.direccion.toLowerCase() !== person.direccion.toLowerCase()) {
                 students.files.push('address');
             }
-            if (student.province.toLowerCase() !== person.province.toLowerCase()) {
+            if (student.provincia_residencia.toLowerCase() !== person.provincia_residencia.toLowerCase()) {
                 students.files.push('province');
             }
-            if (student.municipality.toLowerCase() !== person.municipality.toLowerCase()) {
+            if (student.municipio_residencia.toLowerCase() !== person.municipio_residencia.toLowerCase()) {
                 students.files.push('municipality');
             }
-            if (student.skinColor.toLowerCase() !== person.skinColor?.toLowerCase()) {
+            if (student.color_piel.toLowerCase() !== person.color_piel?.toLowerCase()) {
                 students.files.push('skinColor');
             }
-            if (student.gender.toLowerCase() !== person.gender.toLowerCase()) {
+            if (student.sexo.toLowerCase() !== person.sexo.toLowerCase()) {
                 students.files.push('gender');
             }
             if (students.files.length > 0) {
@@ -125,21 +131,21 @@ let StudentsService = class StudentsService {
         const studentsRegistered = await this.studentsRepository.find();
         const toSave = [];
         for (const i of studentDto) {
-            let students = studentsRegistered.find(p => p.ciStudent === i.ciStudent);
+            let students = studentsRegistered.find(p => p.ciStudent === i.identidad_numero);
             if (students) {
                 students.UpdateStudent(i);
             }
             else {
                 students = this.studentsRepository.create({
-                    ciStudent: i.ciStudent,
-                    nationality: i.nationality,
-                    lastName: i.lastName,
-                    firstName: i.firstName,
-                    address: i.address,
-                    province: i.province,
-                    municipality: i.municipality,
-                    skinColor: i.skinColor,
-                    gender: i.gender,
+                    ciStudent: i.identidad_numero,
+                    nationality: i.ciudadania,
+                    lastName: i.primer_apellido,
+                    firstName: i.primer_nombre,
+                    address: i.direccion,
+                    province: i.provincia_residencia,
+                    municipality: i.municipio_residencia,
+                    skinColor: i.color_piel,
+                    gender: i.sexo,
                     preUniversity: i.preUniversity,
                     admissionMethod: i.admissionMethod,
                     motherEducation: i.motherEducation,

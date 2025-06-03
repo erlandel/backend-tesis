@@ -13,62 +13,74 @@ exports.StudentFuc = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const typeorm_1 = require("typeorm");
 let StudentFuc = class StudentFuc {
-    lastName;
-    firstName;
-    ciStudent;
-    province;
-    gender;
-    nationality;
-    address;
-    municipality;
-    skinColor;
+    primer_apellido;
+    segundo_apellido;
+    primer_nombre;
+    segundo_nombre;
+    identidad_numero;
+    provincia_residencia;
+    sexo;
+    ciudadania;
+    direccion;
+    municipio_residencia;
+    color_piel;
 };
 exports.StudentFuc = StudentFuc;
 __decorate([
     (0, swagger_1.ApiProperty)({ description: 'Apellido del estudiante' }),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], StudentFuc.prototype, "lastName", void 0);
+], StudentFuc.prototype, "primer_apellido", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)({ description: 'Segundo apellido del estudiante' }),
+    __metadata("design:type", String)
+], StudentFuc.prototype, "segundo_apellido", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, swagger_1.ApiProperty)({ description: 'Nombre del estudiante' }),
     __metadata("design:type", String)
-], StudentFuc.prototype, "firstName", void 0);
+], StudentFuc.prototype, "primer_nombre", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)({ description: 'Segundo nombre del estudiante' }),
+    __metadata("design:type", String)
+], StudentFuc.prototype, "segundo_nombre", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ description: 'carnet de identidad' }),
     (0, typeorm_1.PrimaryColumn)({ length: 11, name: 'ci_student' }),
     __metadata("design:type", String)
-], StudentFuc.prototype, "ciStudent", void 0);
+], StudentFuc.prototype, "identidad_numero", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, swagger_1.ApiProperty)({ description: 'Provincia' }),
     __metadata("design:type", String)
-], StudentFuc.prototype, "province", void 0);
+], StudentFuc.prototype, "provincia_residencia", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, swagger_1.ApiProperty)({ description: 'Género' }),
     __metadata("design:type", String)
-], StudentFuc.prototype, "gender", void 0);
+], StudentFuc.prototype, "sexo", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, swagger_1.ApiProperty)({ description: 'Nacionalidad' }),
     __metadata("design:type", String)
-], StudentFuc.prototype, "nationality", void 0);
+], StudentFuc.prototype, "ciudadania", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, swagger_1.ApiProperty)({ description: 'Dirección' }),
     __metadata("design:type", String)
-], StudentFuc.prototype, "address", void 0);
+], StudentFuc.prototype, "direccion", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, swagger_1.ApiProperty)({ description: 'Municipio' }),
     __metadata("design:type", String)
-], StudentFuc.prototype, "municipality", void 0);
+], StudentFuc.prototype, "municipio_residencia", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     (0, swagger_1.ApiProperty)({ description: 'Color de piel' }),
     __metadata("design:type", String)
-], StudentFuc.prototype, "skinColor", void 0);
+], StudentFuc.prototype, "color_piel", void 0);
 exports.StudentFuc = StudentFuc = __decorate([
     (0, typeorm_1.Entity)('studentFuc')
 ], StudentFuc);

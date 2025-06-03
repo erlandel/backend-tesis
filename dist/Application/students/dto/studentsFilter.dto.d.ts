@@ -1,13 +1,15 @@
 export interface StudentData {
-    ciStudent: string;
-    nationality: string;
-    lastName: string;
-    firstName: string;
-    address: string;
-    province: string;
-    municipality: string;
-    skinColor?: string;
-    gender: string;
+    identidad_numero: string;
+    primer_nombre: string;
+    segundo_nombre: string | null;
+    primer_apellido: string;
+    segundo_apellido: string;
+    sexo: string;
+    direccion: string;
+    provincia_residencia: string;
+    municipio_residencia: string;
+    ciudadania: string;
+    color_piel?: string;
     preUniversity: string;
     admissionMethod: string;
     motherEducation: string;

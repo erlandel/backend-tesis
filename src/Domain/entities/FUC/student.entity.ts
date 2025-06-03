@@ -4,29 +4,35 @@ import { Column, Entity, PrimaryColumn } from 'typeorm';
 export class StudentFuc {
   @ApiProperty({ description: 'Apellido del estudiante' })
   @Column()
-  lastName: string;
+  primer_apellido: string;
+  @Column()
+  @ApiProperty({ description: 'Segundo apellido del estudiante' })
+  segundo_apellido: string;
   @Column()
   @ApiProperty({ description: 'Nombre del estudiante' })
-  firstName: string;
+  primer_nombre: string;
+  @Column()
+  @ApiProperty({ description: 'Segundo nombre del estudiante' })
+  segundo_nombre: string;
   @ApiProperty({ description: 'carnet de identidad' })
   @PrimaryColumn({ length: 11, name: 'ci_student' })
-  ciStudent: string;   // Cambiado de idCard a ciStudent para coincidir con la entidad
+  identidad_numero: string;   // Cambiado de idCard a ciStudent para coincidir con la entidad
   @Column()
   @ApiProperty({ description: 'Provincia' })
-  province: string;
+  provincia_residencia: string;
   @Column()
   @ApiProperty({ description: 'Género' })
-  gender: string;
+  sexo: string;
   @Column()
   @ApiProperty({ description: 'Nacionalidad' })
-  nationality: string;
+  ciudadania: string;
   @Column()
   @ApiProperty({ description: 'Dirección' })
-  address: string;
+  direccion: string;
   @Column()
   @ApiProperty({ description: 'Municipio' })
-  municipality: string;
-  @Column()
-  @ApiProperty({ description: 'Color de piel' })
-  skinColor: string;
+  municipio_residencia: string;
+  @Column({nullable: true})
+  @ApiProperty({ description: 'Color de piel'})
+  color_piel: string;
 }
